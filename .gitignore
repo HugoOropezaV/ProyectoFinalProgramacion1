@@ -1,0 +1,12 @@
+
+
+
+# file: ~/.gitignore_global
+.DS_Store
+.idea
+out/
+ProyectoFinalProgramacion1.iml
+ProyectoFinal/out/
+ProyectoFinal/.idea/
+/shelf/
+/.idea/workspace.xml
