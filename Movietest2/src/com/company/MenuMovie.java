@@ -1,5 +1,12 @@
 package com.company;
+
+import org.w3c.dom.ls.LSOutput;
+
+import javax.swing.*;
+import java.util.ArrayList;
+
 public class MenuMovie extends ProcessFinal{
+    //EXAMPLE CLASS
     public void mainMenu(){
         int access = 0;
         boolean repeticions = false;
@@ -12,6 +19,7 @@ public class MenuMovie extends ProcessFinal{
                 access = 0;
                 System.out.println("---MISSION COMPLETED AND PROCESSED---");
                 repeticions = true;
+
             }
             else if(user == 2){
                 System.out.println("ENTER THE PASSWORD --> ");
@@ -43,9 +51,8 @@ public class MenuMovie extends ProcessFinal{
                     "\n7. SHOW MOVIES RANKING"+
                     "\n8. EDIT MOVIES RANKING"+
                     "\n9. SHOW FILMS RELEASE DATE"+
-                    "\n10. EDIT THE DATE OF THE RELEASE OF THE FILMS"+
-                    "\n11. SHOW COMMENTS"+
-                    "\n12. EDIT COMENTS");
+                    "\n10. SHOW COMMENTS"+
+                    "\n11. EDIT THE DATE OF THE RELEASE OF THE FILMS");
             int index = entrada.nextInt();
             switch(index){
                 case 1 : System.out.println(showMovies());
@@ -68,16 +75,13 @@ public class MenuMovie extends ProcessFinal{
                 case 8 : editRanks();
                     System.out.println(showRanks());
                     break;
-                case 9 :
-                    System.out.println(showPremierDate());
+                case 9 : System.out.println(showPremierDate());
                     break;
-                case 10 : editPremierDate();
-                    System.out.println(showPremierDate());
-                    break;
-                case 11 : System.out.println(showComments());
-                    break;
-                case 12 : addComments();
+                case 10 :
                     System.out.println(showComments());
+                    break;
+                case 11 : editPremierDate();
+                    System.out.println(showPremierDate());
                     break;
                 default :
                     System.out.println("YOU ENTERED A WRONG NUMBER");
@@ -115,6 +119,7 @@ public class MenuMovie extends ProcessFinal{
                     System.out.println("----TRY LATER----");
                     System.out.println("*************************************************");
             }
+
         }
     }
 }

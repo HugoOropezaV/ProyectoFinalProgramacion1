@@ -9,6 +9,7 @@ public class ProcessFinal extends Process{
         boolean repeticion = false;
         while(repeticion == false){
             printList();
+            //System.out.println("0. EXIT");
             int number = askNumber();
             String message = writeDescription();
             printDates(message, number);
@@ -344,7 +345,7 @@ public class ProcessFinal extends Process{
     public String showMovies(){
         String resultFinal = "";
         for(int i = 0;i< Movies.size(); i++){
-            resultFinal += i+1+"ª "+Movies.get(i)+"\n";
+            resultFinal += i+1+"ª "+"MOVIE IS --> "+Movies.get(i)+"\n";
         }
         saveMovie(resultFinal);
         return resultFinal;

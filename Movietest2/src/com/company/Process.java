@@ -585,7 +585,7 @@ public class Process {
     public String accountComments(){
         String resultFinal = "";
         for(int i = 0;i< Comments.size(); i++){
-            resultFinal += i+1+"ª "+Comments.get(i)+"\n";
+            resultFinal += i+1+"ª "+"COMMENTARY --> "+Comments.get(i)+"\n";
         }
         saveGender(resultFinal);
         return resultFinal;
