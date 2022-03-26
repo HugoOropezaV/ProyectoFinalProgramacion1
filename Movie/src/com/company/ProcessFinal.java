@@ -9,7 +9,6 @@ public class ProcessFinal extends Process{
         boolean repeticion = false;
         while(repeticion == false){
             printList();
-            //System.out.println("0. EXIT");
             int number = askNumber();
             String message = writeDescription();
             printDates(message, number);

@@ -1,12 +1,5 @@
 package com.company;
-
-import org.w3c.dom.ls.LSOutput;
-
-import javax.swing.*;
-import java.util.ArrayList;
-
 public class MenuMovie extends ProcessFinal{
-    //EXAMPLE CLASS
     public void mainMenu(){
         int access = 0;
         boolean repeticions = false;
@@ -19,7 +12,6 @@ public class MenuMovie extends ProcessFinal{
                 access = 0;
                 System.out.println("---MISSION COMPLETED AND PROCESSED---");
                 repeticions = true;
-
             }
             else if(user == 2){
                 System.out.println("ENTER THE PASSWORD --> ");
@@ -119,7 +111,6 @@ public class MenuMovie extends ProcessFinal{
                     System.out.println("----TRY LATER----");
                     System.out.println("*************************************************");
             }
-
         }
     }
 }
