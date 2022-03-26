@@ -3,7 +3,6 @@ public class CinemaRoom {
     private int maxCapacity;
     private int actualCapacity;
     private int idRoom;
-    private int [] schedule;
     private boolean full;
 
     public CinemaRoom(int idRoom, int maxCapacity){

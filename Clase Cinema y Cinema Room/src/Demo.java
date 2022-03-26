@@ -22,10 +22,6 @@ public class Demo {
         demoCinema.addMovie("THE BATMAN", "Action/Suspense", "14+", "Spanish/English","2D", 190, "2022-03-3");
         movies =demoCinema.getMovies();
 
-        //agregar schedules para el dia 28 y la semana hasta el 2 de abril
-        //cada sala con porlomenos una peli
-        //una sala full
-
         //LUNES
         demoCinema.addSchedule("2022-03-28", "12:10","Monday", movies.get(0), rooms.get(0));
         demoCinema.addSchedule("2022-03-28", "16:20","Monday", movies.get(0), rooms.get(1));

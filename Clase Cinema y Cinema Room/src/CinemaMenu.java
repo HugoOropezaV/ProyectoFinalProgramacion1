@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class CinemaMenu {
     Scanner scan = new Scanner(System.in);
     boolean exit = false;
-    //boolean exitSubmenu = false;
     int option;
 
     Cinema cinema;
@@ -69,7 +68,8 @@ public class CinemaMenu {
             System.out.println("   <5> View Cinema Options");
             System.out.println("   <6> View Today Cinema Billboard");
             System.out.println("   <7> View Weekly Cinema Billboard");
-            System.out.println("   <8> Exit");
+            System.out.println("   <8> Demo print ticket");
+            System.out.println("   <9> Exit");
             System.out.println("*************************************************\n ");
 
             try {System.out.print("   <Select an Option> : ");
@@ -170,8 +170,6 @@ public class CinemaMenu {
                                 emptyFill = scan.nextLine();
                                 System.out.println("\n****************** Configuring Cinema ******************");
                                 System.out.println("\n***************** Adding Movie's Schedule to Rooms ******************");
-                                //(String date, String hour, String day, Movie movie, CinemaRoom room)
-
                                 System.out.print("\nSelect a Movie:  ");
                                 movies = cinema.getMovies();
                                 for (Movie mov: movies) {
@@ -247,7 +245,12 @@ public class CinemaMenu {
                         }
                         break;
                     case 4:
-                        System.out.println("getting option <4>\n");
+                        if(isCinemaCreated){
+                            System.out.println("getting option <4>\n");
+                            System.out.println("Function not available");
+                        }else{
+                            System.out.print("\nPlease firstly Add a Cinema to access another Option\n");
+                        }
                         break;
                     case 5: // VIEW CINEMA OPTIONS
                         if(isCinemaCreated) {
@@ -261,7 +264,9 @@ public class CinemaMenu {
                             System.out.print("\n <7> Add new Schedule");
                             System.out.print("\n <8> Edit a Schedule");
                             System.out.print("\n <9> Delete a Schedule");
-                            System.out.println("\n***************************************************\n ");
+                            System.out.print("\n <10> Return Cinema Menu");
+                            System.out.println("\n*************************************************** ");
+                            System.out.print("\n   <Select an Option> : ");
                             emptyFill = scan.nextLine();
                             option = scan.nextInt();
 
@@ -546,8 +551,11 @@ public class CinemaMenu {
 
                                     }
                                     break;
+                                case 10:
+                                    break;
                                 default:
-                                    System.out.println("Please type an option between 1 and 9");
+                                    System.out.println("Please type an option between 1 and 10");
+                                    System.out.println("Invalid Option returning to Cinema Menu");
                                     break;
                             }
 
@@ -557,16 +565,32 @@ public class CinemaMenu {
 
                         break;
                     case 6: // Today Billboard
-                        System.out.println("\n****************** Welcome to " + cinema.getName() + " ******************");
-                        System.out.println("\n************** Today Billboard "+ cinema.getCity() + " ************");
-                        cinema.printScheduleToday();
+                        if(isCinemaCreated){
+                            System.out.println("\n****************** Welcome to " + cinema.getName() + " ******************");
+                            System.out.println("\n************** Today Billboard "+ cinema.getCity() + " ************");
+                            cinema.printScheduleToday();
+                        }else{
+                            System.out.print("\nPlease firstly Add a Cinema to access another Option\n");
+                        }
                         break;
                     case 7: // Weekly Billboard
-                        System.out.println("\n****************** Welcome to " + cinema.getName() + " ******************");
-                        System.out.println("\n************** Weekly Billboard "+ cinema.getCity() + " ************");
-                        cinema.printScheduleWeek();
+                        if(isCinemaCreated) {
+                            System.out.println("\n****************** Welcome to " + cinema.getName() + " ******************");
+                            System.out.println("\n************** Weekly Billboard " + cinema.getCity() + " ************");
+                            cinema.printScheduleWeek();
+                        }else{
+                            System.out.print("\nPlease firstly Add a Cinema to access another Option\n");
+                        }
                         break;
+
                     case 8:
+                        if(isCinemaCreated){
+                            cinema.printTicket(schedules.get(18));
+                        }else{
+                            System.out.print("\nPlease firstly Add a Cinema to access another Option\n");
+                        }
+                        break;
+                    case 9:
                         System.out.println("getting option <Exit>\n");
                         exit = true;
                         break;

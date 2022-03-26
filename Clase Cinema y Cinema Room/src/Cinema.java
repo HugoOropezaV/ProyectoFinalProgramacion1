@@ -344,7 +344,7 @@ public class Cinema {
         System.out.println("***************************************");
         System.out.println(schedule.getMovie().getName() + " " + schedule.getMovie(). getType() + " " + schedule.getMovie().getLanguages());
         System.out.println(schedule.getDate());
-        System.out.println(schedule.getHour() + " Room: " + schedule.getRoom());
+        System.out.println(schedule.getHour() + " Room: " + schedule.getRoom().getIdRoom());
         System.out.println("***************************************");
     }
     public boolean thereIsRoom(List<CinemaRoom> rooms, int idRoom){
@@ -366,7 +366,7 @@ public class Cinema {
         }
         return result;
     }
-    //String date, String hour, String day, Movie movie, CinemaRoom room
+
     public boolean thereIsSchedule(List<Schedule> schedules, String date, String hour, Movie movie, CinemaRoom room){
         boolean result = false;
         for (Schedule sc: schedules) {
@@ -422,9 +422,11 @@ public class Cinema {
     public int getNumRooms(){
         return rooms.size();
     }
+
     public String toString(){
         return "";
     }
+    
     public void setRooms(List<CinemaRoom> rooms) {
         this.rooms = rooms;
     }
