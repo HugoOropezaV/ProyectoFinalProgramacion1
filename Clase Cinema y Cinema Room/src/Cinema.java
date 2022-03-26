@@ -8,7 +8,7 @@ public class Cinema {
     private String country;
     private String city;
     private String address;
-    private int phoneNumber;
+    private String phoneNumber;
     private List<CinemaRoom> rooms = new ArrayList<CinemaRoom>();
     private CinemaRoom room;
     private List<Movie> movies = new ArrayList<Movie>();
@@ -16,7 +16,7 @@ public class Cinema {
     private List<Schedule> schedules = new ArrayList<Schedule>();
     private Schedule schedule;
 
-    public Cinema(String name, String country, String city,String address, int phoneNumber){
+    public Cinema(String name, String country, String city, String address, String phoneNumber){
         this.name = name;
         this.country = country;
         this.city = city;
@@ -26,8 +26,13 @@ public class Cinema {
     }
 
     public void addRoom(int idRoom, int maxCapacity){
-        room = new CinemaRoom(idRoom, maxCapacity);
-        rooms.add(room);
+        if (!thereIsRoom(rooms, idRoom)){
+            room = new CinemaRoom(idRoom, maxCapacity);
+            rooms.add(room);
+        }else {
+            System.out.println("The Room: " + idRoom + " is already Added to Cinema.");
+        }
+
     }
 
     public void editRoom(CinemaRoom room, int idRoom, int maxCapacity){
@@ -37,6 +42,7 @@ public class Cinema {
 
     public void deleteRoom(int roomId){
         int idx=-1;
+        List<Schedule> ix = null;
         for (CinemaRoom room: rooms) {
             if(room.getIdRoom() == roomId){
                 idx = rooms.indexOf(room);
@@ -44,9 +50,15 @@ public class Cinema {
         }
         if(idx > -1){
             rooms.remove(idx);
+            }
         }
+
+    public void deleteSchedules(List<Schedule> ind){
+        for (Schedule i: ind) {
+            schedules.remove(i);
+        }
+
     }
-    
     public void printAllRooms(){
         for (CinemaRoom room: rooms) {
             System.out.println(room);
@@ -76,8 +88,13 @@ public class Cinema {
     }
 
     public void addMovie(String name, String category, String classification, String languages, String type, int lengthMinutes,String premierDate){
-        movie = new Movie(name, category, classification,languages,type,lengthMinutes, premierDate);
-        movies.add(movie);
+        if(!thereIsMovie(movies, name , languages, type)){
+            movie = new Movie(name, category, classification,languages,type,lengthMinutes, premierDate);
+            movies.add(movie);
+        }else {
+            System.out.println("The Movie: " + name + " is already Added to Cinema.");
+        }
+
     }
 
     public void printAllMovies(){
@@ -93,7 +110,15 @@ public class Cinema {
             }
         }
     }
-
+    public void editMovie(Movie movie, String name, String category, String classification, String languages, String type, int lengthMinutes,String premierDate) {
+        movie.setName(name);
+        movie.setCategory(category);
+        movie.setClassification(classification);
+        movie.setLanguages(languages);
+        movie.setType(type);
+        movie.setLengthMinutes(lengthMinutes);
+        movie.setPremierDate(premierDate);
+    }
     public void deleteMovie(String movieName, String language, String type){
         int idx=-1;
         for (Movie movie: movies) {
@@ -113,7 +138,6 @@ public class Cinema {
     public Movie getMovie(String movieName, String language, String type) {
         Movie movieResult = null;
         for (Movie movie: movies) {
-            //if(movie.getNAme() == movieName)
             if(movie.getName().equals(movieName) && movie.getLanguages().equals(language) && movie.getType().equals(type)){
                 movieResult = movie;
             }
@@ -121,8 +145,13 @@ public class Cinema {
         return movieResult;
     }
     public void addSchedule(String date, String hour, String day, Movie movie, CinemaRoom room){
-        Schedule schedule = new Schedule(date, hour, day, movie, room);
-        schedules.add(schedule);
+        if(!thereIsSchedule(schedules, date, hour, movie, room)){
+            Schedule schedule = new Schedule(date, hour, day, movie, room);
+            schedules.add(schedule);
+        }else{
+            System.out.println("The Schedule: " + date + " " + hour  + " " + room.getIdRoom() + " is already Added to Cinema.");
+        }
+
     }
 
     public void editSchedule(Schedule s, String date, String hour, String day, Movie movie, CinemaRoom room){
@@ -180,6 +209,8 @@ public class Cinema {
             }
         }
     }
+
+
 
     public void printScheduleWeek(){
         boolean printW;
@@ -281,7 +312,7 @@ public class Cinema {
                 }
                 if(!friday.isEmpty()){
                     String hours = "";
-                    System.out.print("Friday: ");
+                    System.out.print("FRIDAY: ");
                     for (String day5 : friday){
                         hours += day5;
                     }
@@ -308,6 +339,46 @@ public class Cinema {
         }
 
     }
+
+    public void printTicket(Schedule schedule){
+        System.out.println("***************************************");
+        System.out.println(schedule.getMovie().getName() + " " + schedule.getMovie(). getType() + " " + schedule.getMovie().getLanguages());
+        System.out.println(schedule.getDate());
+        System.out.println(schedule.getHour() + " Room: " + schedule.getRoom());
+        System.out.println("***************************************");
+    }
+    public boolean thereIsRoom(List<CinemaRoom> rooms, int idRoom){
+        boolean result = false;
+        for (CinemaRoom room: rooms) {
+            if (room.getIdRoom() == idRoom) {
+                result =true;
+            }
+        }
+        return result;
+    }
+
+    public boolean thereIsMovie(List<Movie> movies, String movieName, String language, String type ){
+        boolean result = false;
+        for (Movie mo: movies) {
+            if(mo.getName().equals(movieName) && mo.getLanguages().equals(language) && mo.getType().equals(type)){
+                result =true;
+            }
+        }
+        return result;
+    }
+    //String date, String hour, String day, Movie movie, CinemaRoom room
+    public boolean thereIsSchedule(List<Schedule> schedules, String date, String hour, Movie movie, CinemaRoom room){
+        boolean result = false;
+        for (Schedule sc: schedules) {
+            if(sc.getDate().equals(date) && sc.getHour().equals(hour) && sc.getMovie().equals(movie) && sc.getRoom().equals(room)){
+                result =true;
+            }
+        }
+
+        return result;
+    }
+
+
     public void setName(String name){
         this.name = name;
     }
@@ -324,7 +395,7 @@ public class Cinema {
         this.address = address;
     }
 
-    public void setPhoneNumber(int phoneNumber){
+    public void setPhoneNumber(String phoneNumber){
         this.phoneNumber = phoneNumber;
     }
 
@@ -344,7 +415,7 @@ public class Cinema {
         return address;
     }
 
-    public int getPhoneNumber(){
+    public String getPhoneNumber(){
         return phoneNumber;
     }
 
@@ -353,6 +424,17 @@ public class Cinema {
     }
     public String toString(){
         return "";
+    }
+    public void setRooms(List<CinemaRoom> rooms) {
+        this.rooms = rooms;
+    }
+
+    public void setMovies(List<Movie> movies) {
+        this.movies = movies;
+    }
+
+    public void setSchedules(List<Schedule> schedules) {
+        this.schedules = schedules;
     }
 
 }
