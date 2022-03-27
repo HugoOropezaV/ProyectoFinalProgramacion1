@@ -1,8 +1,10 @@
-import java.awt.geom.NoninvertibleTransformException;
-import java.util.ArrayList.*;
+package ProyectoFinal;
+
+import Cinema.Cinema;
+import Cinema.Movie;
 
 public class TheterPage {
-    private String cinemaPageName = cinemaData.getName();
+    /*private String cinemaPageName = cinemaData.getName();
     private User[] usersList;
     private Challenge[] ChallengesList;
     private Cinema cinemaData;
@@ -86,7 +88,7 @@ public class TheterPage {
             System.out.println("existen demasiados desafios en la lista ingresada");
         }
 
-    }
+    }*/
 
 
 

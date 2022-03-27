@@ -1,18 +1,16 @@
 package Cinema;
 
-import org.w3c.dom.ls.LSOutput;
 import java.io.File;  // Import the File class
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-import javax.swing.JOptionPane;
 public class Process {
     String emptyFill;
 
     Scanner entrada = new Scanner(System.in);
 
-    String nameTextGender = "ProyectoFinal/Gender.txt";
+    String nameTextGender = "Gender.txt";
     String nameTextDescription = "Description.txt";
     String nameTextPremierDate = "PremierDate.txt";
     String nameTextComments = "Comment.txt";
