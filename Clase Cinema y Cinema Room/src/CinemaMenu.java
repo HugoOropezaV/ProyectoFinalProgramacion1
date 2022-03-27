@@ -3,7 +3,7 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-public class CinemaMenu {
+public class CinemaMenu extends ProcessFinal{
     Scanner scan = new Scanner(System.in);
     boolean exit = false;
     int option;
@@ -68,8 +68,12 @@ public class CinemaMenu {
             System.out.println("   <5> View Cinema Options");
             System.out.println("   <6> View Today Cinema Billboard");
             System.out.println("   <7> View Weekly Cinema Billboard");
-            System.out.println("   <8> Demo print ticket");
-            System.out.println("   <9> Exit");
+            System.out.println("   <8> Demo Print Ticket");
+            System.out.println("   <9> View Movies Options");
+            System.out.println("   <10> View Movies Ranking");
+            System.out.println("   <11> View Premier Date");
+            System.out.println("   <12> Comments Options");
+            System.out.println("   <0> Exit");
             System.out.println("*************************************************\n ");
 
             try {System.out.print("   <Select an Option> : ");
@@ -591,13 +595,141 @@ public class CinemaMenu {
                         }
                         break;
                     case 9:
+                        if(isCinemaCreated) {
+                            System.out.println("   <1> Top Movie Options");
+                            System.out.println("   <2> Gender Options");
+                            System.out.println("   <3> Description Options");
+                            System.out.println("   <4> Edit Movies Ranking");
+                            System.out.println("   <5> Edit Premier Date");
+                            System.out.println("   <6> Exit");
+                            System.out.println("   <Select an Option> : ");
+                            emptyFill = scan.nextLine();
+                            option = scan.nextInt();
+                            switch(option){
+                                case 1 :
+                                    System.out.println("   <1> Show Top Movies");
+                                    System.out.println("   <2> Edit Top Movies");
+                                    System.out.println("   <Select an Option> : ");
+                                    emptyFill = scan.nextLine();
+                                    option = scan.nextInt();
+                                    switch(option){
+                                        case 1 :
+                                            System.out.println(showMovies());
+                                            break;
+                                        case 2 :
+                                            editMovie();
+                                            System.out.println(showMovies());
+                                            break;
+                                        default :
+                                            System.out.println("Please type an option between 1 and 2");
+                                            System.out.println("Invalid Option returning to Cinema Menu");
+                                            break;
+                                    }
+                                    break;
+                                case 2 :
+                                    System.out.println("   <1> Show Gender");
+                                    System.out.println("   <2> Edit Gender");
+                                    System.out.println("   <Select an Option> : ");
+                                    emptyFill = scan.nextLine();
+                                    option = scan.nextInt();
+                                    switch(option){
+                                        case 1 :
+                                            System.out.println(showGenders());
+                                            break;
+                                        case 2 :
+                                            editGender();
+                                            System.out.println(showGenders());
+                                            break;
+                                        default :
+                                            System.out.println("Please type an option between 1 and 2");
+                                            System.out.println("Invalid Option returning to Cinema Menu");
+                                            break;
+                                    }
+                                    break;
+                                case 3 :
+                                    System.out.println("   <1> Show Description");
+                                    System.out.println("   <2> Edit Description");
+                                    System.out.println("   <Select an Option> : ");
+                                    emptyFill = scan.nextLine();
+                                    option = scan.nextInt();
+                                    switch(option){
+                                        case 1 :
+                                            System.out.println(showDescription());
+                                            break;
+                                        case 2 :
+                                            editDescription();
+                                            System.out.println(showDescription());
+                                            break;
+                                        default :
+                                            System.out.println("Please type an option between 1 and 2");
+                                            System.out.println("Invalid Option returning to Cinema Menu");
+                                            break;
+                                    }
+                                    break;
+                                case 4 :
+                                    editRanks();
+                                    System.out.println(showRanks());
+                                    break;
+                                case 5 :
+                                    editPremierDate();
+                                    System.out.println(showPremierDate());
+                                    break;
+                                case 6 :
+                                    break;
+                                default :
+                                    System.out.println("Please type an option between 1 and 5");
+                                    System.out.println("Invalid Option returning to Cinema Menu");
+                                    break;
+                            }
+                        }else{
+                            System.out.print("\nPlease firstly Add a Cinema to access another Option\n");
+                        }
+                        break;
+                    case 10:
+                        if(isCinemaCreated) {
+                            System.out.println(showRanks());
+                        }else{
+                            System.out.print("\nPlease firstly Add a Cinema to access another Option\n");
+                        }
+                        break;
+                    case 11:
+                        if(isCinemaCreated){
+                            System.out.println(showPremierDate());
+                        }else{
+                            System.out.print("\nPlease firstly Add a Cinema to access another Option\n");
+                        }
+                        break;
+                    case 12:
+                        if(isCinemaCreated) {
+                            System.out.println("   <1> Show Comments");
+                            System.out.println("   <2> Edit Comments");
+                            System.out.println("   <Select an Option> : ");
+                            emptyFill = scan.nextLine();
+                            option = scan.nextInt();
+                            switch(option){
+                                case 1 :
+                                    System.out.println(showComments());
+                                    break;
+                                case 2 :
+                                    addComments();
+                                    System.out.println(showComments());
+                                    break;
+                                default :
+                                    System.out.println("Please type an option between 1 and 2");
+                                    System.out.println("Invalid Option returning to Cinema Menu");
+                                    break;
+                            }
+                        }else{
+                            System.out.print("\nPlease firstly Add a Cinema to access another Option\n");
+                        }
+                        break;
+                    case 0:
                         System.out.println("getting option <Exit>\n");
                         exit = true;
                         break;
-                    default:
-                        System.out.println("Please type an option between 1 and 6");
+                    default :
+                        System.out.println("Please type an option between 0 and 12");
                 }
-
             }catch(InputMismatchException e){
                 System.out.println("\n Please type a number as valid input");
                 scan.next();
