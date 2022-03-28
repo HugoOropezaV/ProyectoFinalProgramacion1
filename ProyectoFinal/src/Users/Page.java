@@ -5,9 +5,11 @@ import Cinema.*;
 import ChallengesScan.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Page {
+
     LoginPage loginPage;
     ArrayList<Customer> users;
     CinemaMenu cinemaMenu;
@@ -33,11 +35,22 @@ public class Page {
             if(option > 0 && option < 4){
                 switch(option){
                     case 1:
-
-                        System.out.print("Input your private ID: ");
-                        int id = input.nextInt() ;
-                        System.out.print("\nProvide your private password: ");
-                        String password = input.next();
+                        int id = 0;
+                        String password;
+                        boolean res = true;
+                        while(res){
+                            try{
+                                System.out.print("Input your private ID: ");
+                                String empty = input.nextLine();
+                                id = input.nextInt() ;
+                                System.out.print("\nProvide your private password: ");
+                                res = false;
+                            }catch (InputMismatchException e){
+                                System.out.println("Ingrese los caracteres validos. Solo numeros para ID ");
+                                res = true;
+                            }
+                        }
+                        password = input.next();
                         System.out.println("Validating information... ");
                         System.out.println("login: " + loginPage.login(id, password));
 
@@ -162,4 +175,7 @@ public class Page {
     private void getUserFunctions(int id){
         loginPage.getPersonByID(id).getFunctions(cinemaMenu.getCinema());
     }
+    /*
+    opcion
+     */
 }

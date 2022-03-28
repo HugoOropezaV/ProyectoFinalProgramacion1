@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Customer extends Person{
+
     private ArrayList<Schedule> bookings;
     public int completedChallenges;
     public int prizes;
@@ -137,7 +138,7 @@ public class Customer extends Person{
         }while(run);
     }
 
+    /*
 
-
-
+     */
 }
