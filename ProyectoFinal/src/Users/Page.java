@@ -18,7 +18,7 @@ public class Page {
         loginPage = new LoginPage();
         users = IPersonManager.users;
         cinemaMenu = new CinemaMenu();
-        admin = new Admin("admin", "admin@admin.com", "77777766", new Account("caca"));
+        admin = new Admin("admin", "admin@admin.com", "77777766", new Account("root"));
         loginPage.addAccount(admin.getAccount().getId(),admin.getAccount().getPassword());
         System.out.println(admin.getAccount().toStirng());
         loginPage.createAccount("Isaias", "is@email.com", "67606890", "pocoyo", 19);

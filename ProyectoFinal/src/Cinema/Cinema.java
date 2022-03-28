@@ -397,16 +397,14 @@ public class Cinema {
         }
 
     }
-
-    public String printTicket(Schedule schedule){
-        String ticket = "";
-        ticket += "***************************************\n";
-        ticket += schedule.getMovie().getName() + " " + schedule.getMovie(). getType() + " " + schedule.getMovie().getLanguages() + "\n";
-        ticket += schedule.getDate();
-        ticket += "\n"+schedule.getHour() + " Room: " + schedule.getRoom().getIdRoom();
-        ticket += "***************************************";
-        return ticket;
+    public void printTicket(Schedule schedule) {
+        System.out.println("*************");
+        System.out.println(schedule.getMovie().getName() + " " + schedule.getMovie().getType() + " " + schedule.getMovie().getLanguages());
+        System.out.println(schedule.getDate());
+        System.out.println(schedule.getHour() + " Room: " + schedule.getRoom().getIdRoom());
+        System.out.println("*************");
     }
+
     public boolean thereIsRoom(List<CinemaRoom> rooms, int idRoom){
         boolean result = false;
         for (CinemaRoom room: rooms) {
@@ -515,7 +513,14 @@ public class Cinema {
     }
 
     public String getTicket(Schedule schedule){
-        return printTicket(schedule);
+        String ticket = "";
+        ticket += "***************************************\n";
+        ticket += schedule.getMovie().getName() + " " + schedule.getMovie(). getType() + " " + schedule.getMovie().getLanguages() + "\n";
+        ticket += schedule.getDate();
+        ticket += "\n"+schedule.getHour() + " Room: " + schedule.getRoom().getIdRoom();
+
+        ticket += "***************************************";
+        return ticket;
     }
 
 }

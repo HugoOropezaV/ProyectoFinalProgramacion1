@@ -154,7 +154,7 @@ public class Movie {
     }
 
     public String getMovieRank(){
-        String res;
+        String res = "";
         return "";
 
     }

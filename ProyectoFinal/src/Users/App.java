@@ -1,4 +1,6 @@
 package  Users;
+import Cinema.CinemaMenu;
+
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -9,6 +11,9 @@ public class App {
         Page page = new Page();
         page.getLoginFunctions();
 
+        /*CinemaMenu cinemaMenu = new CinemaMenu();
+        cinemaMenu.printCinemaOptions();
+*/
         /*Admin admin = new Admin("admin", "admin@admin.com", "77777766", new Account("caca"));
         LoginPage loginPage = new LoginPage();
         loginPage.addAccount(admin.getAccount().getId(), admin.getAccount().getPassword());

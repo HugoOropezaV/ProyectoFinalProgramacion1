@@ -42,18 +42,17 @@ public class CinemaMenu extends ProcessFinal{
     Schedule selectedSchedule;
     Demo demo;
 
-    public CinemaMenu(){
-        demo = new Demo();
-        cinema = demo.getDemoCinema();
-    }
     public Cinema getCinema(){
         return cinema;
     }
 
     public void printCinemaOptions(){
+        demo = new Demo();
+
+
         // cargar datos de Demo.
 
-        this.isCinemaCreated = true;
+        this.isCinemaCreated = false;
 
 
         for (Movie m: movies) {
@@ -603,7 +602,7 @@ public class CinemaMenu extends ProcessFinal{
 
                     case 8:
                         if(isCinemaCreated){
-                            cinema.printTicket(schedules.get(18));
+                            cinema.printTicket(schedules.get(1));
                         }else{
                             System.out.print("\nPlease firstly Add a Cinema to access another Option\n");
                         }
