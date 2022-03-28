@@ -1,4 +1,5 @@
 package  Users;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
@@ -10,7 +11,6 @@ public class LoginPage {
     LoginPage(){
         this.loginInfo = new HashMap<Integer, String>();
         iDandPasswords = new IDandPasswords();
-        iDandPasswords.add(IPersonManager.admin.getAccount().getId(),IPersonManager.admin.getAccount().getPassword());
     }
 
     LoginPage(HashMap<Integer, String> loginInfo){
@@ -39,16 +39,17 @@ public class LoginPage {
     }
     private Customer createAccount(Customer person){
         IPersonManager.users.add(person);
-        iDandPasswords.add(person.getAccount().getId(), person.getAccount().getPassword());
+        //iDandPasswords.add(person.getAccount().getId(), person.getAccount().getPassword());
+        this.addAccount(person.getAccount().getId(),person.getAccount().getPassword());
         System.out.println("your private id is : " + person.getAccount().getId());
         return person;
     }
     public Customer createAccount(String name, String email, String phone, String password, int age){
         Customer customer = new Customer(name, email, phone, new Account(password), age);
         IPersonManager.users.add(customer);
-        iDandPasswords.add(customer.getAccount().getId(), customer.getAccount().getPassword());
         System.out.println("Your registrations was succesfull.\n Please login to your new account :)");
         System.out.println("Your unique private ID is :" + customer.getAccount().getId());
+        this.addAccount(customer.getAccount().getId(),customer.getAccount().getPassword());
         return customer;
     }
 
@@ -88,6 +89,10 @@ public class LoginPage {
             }
         }
         return false;
+    }
+
+    public void addAccount(int id, String password){
+        this.iDandPasswords.add(id, password);
     }
 
 }

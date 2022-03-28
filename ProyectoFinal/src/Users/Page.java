@@ -4,6 +4,7 @@ import Cinema.CinemaMenu;
 import Cinema.*;
 import ChallengesScan.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Page {
@@ -16,7 +17,9 @@ public class Page {
         loginPage = new LoginPage();
         users = new ArrayList<Customer>();
         cinemaMenu = new CinemaMenu();
-        admin = new Admin("admin", "admin@admin.com", "77777766", new Account("cacacaca"));
+        admin = new Admin("admin", "admin@admin.com", "77777766", new Account("caca"));
+        loginPage.addAccount(admin.getAccount().getId(),admin.getAccount().getPassword());
+        System.out.println(admin.getAccount().toStirng());
     }
 
     public void getLoginFunctions(){
@@ -35,6 +38,8 @@ public class Page {
                         int id = input.nextInt() ;
                         System.out.print("\nProvide your private password: ");
                         String password = input.next();
+                        System.out.println("Validating information... ");
+                        System.out.println("login: " + loginPage.login(id, password));
 
                         while(loginPage.login(id, password)){
                             System.out.println("Invalid password. Try again");
@@ -43,7 +48,6 @@ public class Page {
                             System.out.print("\nProvide your private password: ");
                             password = input.next();
                         }
-                        System.out.println("Welcome to your account. You are logged as a ");
                         System.out.println("\n==========================\n");
                         if(id == 1000){
                             getAdminFunctions();
@@ -116,13 +120,6 @@ public class Page {
             }
         }while(run);
     }
-
-
-
-
-
-
-
 
     public void getAdminFunctions() {
         System.out.println("Welcome superuser. What would you like to do?");

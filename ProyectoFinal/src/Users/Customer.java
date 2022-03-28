@@ -111,7 +111,7 @@ public class Customer extends Person{
                         System.out.println("Display total challenges");
                         break;
                     case 4:
-                        System.out.println("FOr what movie do you want to watch");
+                        System.out.println("what movie do you want to watch");
 
                         run = false;
                         System.out.println("See you later SuperUser :3");

@@ -4,9 +4,9 @@ import javax.swing.*;
 import java.util.Scanner;
 
 public class addsScan {
+
     private static int option;
     static Scanner scan = new Scanner(System.in);
-
 
     static int commentChallengeN = 1;
     static int watchChallengeN = 1;
