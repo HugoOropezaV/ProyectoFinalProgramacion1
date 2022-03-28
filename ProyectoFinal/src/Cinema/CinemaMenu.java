@@ -40,13 +40,18 @@ public class CinemaMenu extends ProcessFinal{
     Schedule selectedSchedule;
     Demo demo;
 
+    public CinemaMenu(){
+        demo = new Demo();
+        cinema = demo.getDemoCinema();
+    }
     public Cinema getCinema(){
         return cinema;
     }
 
     public void printCinemaOptions(){
         // cargar datos de Demo.
-        demo = new Demo();
+
+        this.isCinemaCreated = true;
 
 
         for (Movie m: movies) {

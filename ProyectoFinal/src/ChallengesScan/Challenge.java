@@ -22,7 +22,12 @@ public abstract class Challenge implements IChallengeManager{
 
     public Challenge(){
     }
-
+    @Override
+    public String toString(){
+        String res = "";
+        res+= challengeName + "\n" + " ---->  "+ complited;
+        return res;
+    }
     @Override
     public void createChallenge(){
         System.out.println("Challenge name");
@@ -64,6 +69,7 @@ public abstract class Challenge implements IChallengeManager{
     }
 
     protected void checkMyChallenge(){
+        //
         if (deletedChallenge) {
             System.out.println("This challenge doesn't exist or has been deleted");
 

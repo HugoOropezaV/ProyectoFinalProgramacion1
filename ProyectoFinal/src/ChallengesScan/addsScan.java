@@ -22,6 +22,7 @@ public class addsScan {
     static String[] challengeList = new String[300];
 
     static String[] trueChallenges = new String[300];
+    public static int challengeCounter = 0;
 
 /* public String getAllChallenge()
 *  like
@@ -32,15 +33,17 @@ public class addsScan {
 *   return challenge[i];
 * }
 * */
-    public String getAllChallenge(Challenge[] challenges){
+    public static String getAllChallenge(Challenge[] challenges){
         String list_String = "";
         for(int i =0; i < challenges.length; i++){
-            list_String += ((i + 1) + ". " + challenges[i].challengeName + "\n");
+            if(challenges[i] != null){
+                list_String += ((i + 1) + ". " + challenges[i].challengeName + "\n");
+            }
         }
         return  list_String;
     }
 
-    public Challenge getChallenge(int num, Challenge[] challenges){
+    public static Challenge getChallenge(int num, Challenge[] challenges){
         return challenges[num];
     }
 
@@ -61,6 +64,7 @@ public class addsScan {
 
                 if (option == 1) {
                     addsScan.addChallenges();
+                    challengeCounter++;
                 }else if(option == 2){
                     addsScan.lessChallenge();
                 }else if (option == 3){

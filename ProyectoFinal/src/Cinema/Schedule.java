@@ -14,7 +14,6 @@ public class Schedule {
         this.movie = movie;
         this.room = room;
     }
-
     public String getHour() {
         return hour;
     }

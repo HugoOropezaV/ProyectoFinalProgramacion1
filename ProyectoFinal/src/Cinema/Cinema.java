@@ -1,5 +1,6 @@
 package Cinema;
 
+import java.lang.reflect.Array;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,37 +14,37 @@ public class Cinema {
     private String phoneNumber;
     private List<CinemaRoom> rooms = new ArrayList<CinemaRoom>();
     private CinemaRoom room;
-    private List<Movie> movies = new ArrayList<Movie>();
+    public List<Movie> movies = new ArrayList<Movie>();
     private Movie movie;
     private List<Schedule> schedules = new ArrayList<Schedule>();
     private Schedule schedule;
 
-    public String getAllMovies(Movie[] movies){
+    public String getAllMovies(List<Movie> movies){
         String list_String = "";
-        for(int i =0; i < movies.length; i++){
-            list_String += ((i + 1) + ". " + movies[i].getName() + "\n");
+        for(int i =0; i < movies.size(); i++){
+            list_String += ((i + 1) + ". " + movies.get(i).getName() + "\n");
         }
         return  list_String;
     }
 
-    public Movie getMovie(int num, Movie[] movies){
-        return movies[num];
+    public Movie getMovie(int num, List<Movie> movies){
+        return movies.get(num);
     }
-    public List getAllShowsByMovie(Movie movie, Schedule[] schedules){
-        ArrayList<Schedule> lista_schedules = new ArrayList();
-        for(int i = 0; i < schedules.length; i++){
-            if (schedules[i].getMovie().equals(movie)){
-                lista_schedules.add(schedules[i]);
+    public ArrayList<Schedule> getAllShowsByMovie(Movie movie, List<Schedule> schedules){
+        ArrayList<Schedule> lista_schedules = new ArrayList<Schedule>();
+        for(int i = 0; i < schedules.size(); i++){
+            if (schedules.get(i).getMovie().equals(movie)){
+                lista_schedules.add(schedules.get(i));
             }
 
         }
         return lista_schedules;
     }
 
-    public String getAllShows(Schedule[] schedules){
+    public String getAllShows(List<Schedule> schedules){
         String list_String = "";
-        for(int i =0; i < schedules.length; i++){
-            list_String += ((i + 1) + ". " + schedules[i].getMovie().getName() + schedules[i].toString() + "\n");
+        for(int i =0; i < schedules.size(); i++){
+            list_String += ((i + 1) + ". " + schedules.get(i).getMovie().getName() + schedules.get(i).toString() + "\n");
         }
         return  list_String;
     }
@@ -57,6 +58,7 @@ public class Cinema {
         this.phoneNumber = phoneNumber;
         
     }
+
 
 
     /* public String getAllMovies()
@@ -396,12 +398,14 @@ public class Cinema {
 
     }
 
-    public void printTicket(Schedule schedule){
-        System.out.println("***************************************");
-        System.out.println(schedule.getMovie().getName() + " " + schedule.getMovie(). getType() + " " + schedule.getMovie().getLanguages());
-        System.out.println(schedule.getDate());
-        System.out.println(schedule.getHour() + " Room: " + schedule.getRoom().getIdRoom());
-        System.out.println("***************************************");
+    public String printTicket(Schedule schedule){
+        String ticket = "";
+        ticket += "***************************************\n";
+        ticket += schedule.getMovie().getName() + " " + schedule.getMovie(). getType() + " " + schedule.getMovie().getLanguages() + "\n";
+        ticket += schedule.getDate();
+        ticket += "\n"+schedule.getHour() + " Room: " + schedule.getRoom().getIdRoom();
+        ticket += "***************************************";
+        return ticket;
     }
     public boolean thereIsRoom(List<CinemaRoom> rooms, int idRoom){
         boolean result = false;
@@ -493,6 +497,25 @@ public class Cinema {
 
     public void setSchedules(List<Schedule> schedules) {
         this.schedules = schedules;
+    }
+
+    public boolean makeBooking(Schedule schedule, int seats){
+        if(schedule.getRoom().isFull()){
+            System.out.println("Ohh no, the schedule is full");
+            return false;
+        }else{
+            if(seats + schedule.getRoom().getActualCapacity() <= schedule.getRoom().getMaxCapacity()){
+                System.out.println("Your boking was succesful");
+                schedule.getRoom().updateCapacity(seats);
+                return true;
+            }else{
+                return false;
+            }
+        }
+    }
+
+    public String getTicket(Schedule schedule){
+        return printTicket(schedule);
     }
 
 }

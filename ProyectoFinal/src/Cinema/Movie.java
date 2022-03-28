@@ -6,13 +6,13 @@ public class Movie {
     private String name;
     private String category;
     private String classification;
-    ArrayList<String> comments;//possible class
+    public ArrayList<String> comments;//possible class
     private String languages;
     private String type;
     private int views;
     private int lengthMinutes;
     private int rankCounter;
-    private int rank;
+    private double rank;
     private String premierDate;
     private int totalRank ;
 
@@ -113,12 +113,12 @@ public class Movie {
         return premierDate;
     }
 
-    public void addRank(int i){
+    public void addRank(double i){
         totalRank += i;
         rankCounter++;
     }
 
-    public int getRank() {
+    public double getRank() {
         rank = totalRank/rankCounter;
         return rank;
     }
@@ -139,5 +139,13 @@ public class Movie {
         sb.append(lengthMinutes);
         sb.append("\n*******************");
         return sb.toString();
+    }
+
+    public String getAllComments(){
+        String comment ="";
+        for(String str : comments){
+            comment += "********************************\n" + str;
+        }
+        return comment;
     }
 }
