@@ -108,7 +108,7 @@ public class Customer extends Person{
                         }
                     }
                 }else
-                    {
+                {
                     addsScan.watchChallenge[i].Status = numberOfMovies[i];
                 }
             }

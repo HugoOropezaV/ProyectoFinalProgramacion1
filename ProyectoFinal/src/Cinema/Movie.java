@@ -137,7 +137,11 @@ public class Movie {
         sb.append(category);
         sb.append("\nTime: ");
         sb.append(lengthMinutes);
+        sb.append("\n Rank: ");
+        sb.append(getRank());
+
         sb.append("\n*******************");
+
         return sb.toString();
     }
 
@@ -147,5 +151,11 @@ public class Movie {
             comment += "********************************\n" + str;
         }
         return comment;
+    }
+
+    public String getMovieRank(){
+        String res;
+        return "";
+
     }
 }
