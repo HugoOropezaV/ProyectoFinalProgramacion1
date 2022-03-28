@@ -18,6 +18,9 @@ public class Cinema {
     private List<Schedule> schedules = new ArrayList<Schedule>();
     private Schedule schedule;
 
+
+
+
     public Cinema(String name, String country, String city, String address, String phoneNumber){
         this.name = name;
         this.country = country;
@@ -26,6 +29,29 @@ public class Cinema {
         this.phoneNumber = phoneNumber;
         
     }
+
+
+    /* public String getAllMovies()
+     *  like
+     *   1. Challenge name
+     *   2. Challenge nam2
+     *
+     * public Challenge getChallenge(int i){
+     *   return challenge[i];
+     * }
+     *
+     * public String getAllShowsByMovie(si se puede por pelicula)
+     *  1. SHow 1 de pelicula
+     * 2. sho 2
+     *
+     * publc String getAllShows()
+     * all todos a imprimit
+     *
+     * get all cinema room
+     *
+     *
+     * */
+
 
     public void addRoom(int idRoom, int maxCapacity){
         if (!thereIsRoom(rooms, idRoom)){

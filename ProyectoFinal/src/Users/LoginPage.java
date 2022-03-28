@@ -8,9 +8,10 @@ public class LoginPage {
 
     HashMap<Integer, String> loginInfo;
     IDandPasswords iDandPasswords;
+
     LoginPage(){
-        this.loginInfo = new HashMap<Integer, String>();
         iDandPasswords = new IDandPasswords();
+        loginInfo = iDandPasswords.getLoginInfo();
     }
 
     LoginPage(HashMap<Integer, String> loginInfo){
@@ -37,9 +38,9 @@ public class LoginPage {
         }
         return false;
     }
-    private Customer createAccount(Customer person){
+    public Customer createAccount(Customer person){
         IPersonManager.users.add(person);
-        //iDandPasswords.add(person.getAccount().getId(), person.getAccount().getPassword());
+        iDandPasswords.add(person.getAccount().getId(), person.getAccount().getPassword());
         this.addAccount(person.getAccount().getId(),person.getAccount().getPassword());
         System.out.println("your private id is : " + person.getAccount().getId());
         return person;
@@ -79,8 +80,6 @@ public class LoginPage {
         }
         return null;
     }
-
-
 
     public boolean isPhoneRepeated(String phone) {
         for(int i = 0; i< IPersonManager.users.size(); i++){

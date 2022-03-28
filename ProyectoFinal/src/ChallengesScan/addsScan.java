@@ -23,7 +23,15 @@ public class addsScan {
 
     static String[] trueChallenges = new String[300];
 
-
+/* public String getAllChallenge()
+*  like
+*   1. Challenge name
+*   2. Challenge nam2
+*
+* public Challenge getChallenge(int i){
+*   return challenge[i];
+* }
+* */
 
     public static void challengeControlAd(){
         int i = 0;

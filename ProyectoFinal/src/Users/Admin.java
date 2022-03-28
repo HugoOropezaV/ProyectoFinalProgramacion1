@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Admin extends Person implements IPersonManager{
+
     private String name;
     private String email;
     private String phone;
@@ -13,10 +14,6 @@ public class Admin extends Person implements IPersonManager{
     Admin(String name, String email, String phone, Account account){
         super(name, email, phone, account);
     }
-
-
-
-
 
     public void getUserAdminFunctions() {
         System.out.println("Welcome superuser. What would you like to do?");
@@ -37,7 +34,7 @@ public class Admin extends Person implements IPersonManager{
                             System.out.println("Select an user to  block");
                             System.out.println(getAllUsers()+ "\n");
                             int blockUserOption = input.nextInt();
-                            while(!(blockUserOption > 0 && blockUserOption <= IPersonManager.users.size())){
+                            while(!(blockUserOption > 0 && blockUserOption <= users.size())){
                                 System.out.println("You input an invalid option. ");
                                 System.out.println("Select an option between  1 and " + IPersonManager.users.size());
                                 System.out.println(getAllUsers()+ "\n");

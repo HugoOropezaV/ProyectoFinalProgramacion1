@@ -17,7 +17,7 @@ public class Page {
 
     public Page(){
         loginPage = new LoginPage();
-        users = new ArrayList<Customer>();
+        users = IPersonManager.users;
         cinemaMenu = new CinemaMenu();
         admin = new Admin("admin", "admin@admin.com", "77777766", new Account("caca"));
         loginPage.addAccount(admin.getAccount().getId(),admin.getAccount().getPassword());
@@ -50,11 +50,12 @@ public class Page {
                                 res = true;
                             }
                         }
+
                         password = input.next();
                         System.out.println("Validating information... ");
                         System.out.println("login: " + loginPage.login(id, password));
 
-                        while(loginPage.login(id, password)){
+                        while(!loginPage.login(id, password)){
                             System.out.println("Invalid password. Try again");
                             System.out.print("Input your private ID: ");
                             id = input.nextInt();

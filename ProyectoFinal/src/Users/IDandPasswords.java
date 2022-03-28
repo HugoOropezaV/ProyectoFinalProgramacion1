@@ -4,9 +4,8 @@ import java.util.HashMap;
 public class IDandPasswords {
 
     HashMap<Integer, String> loginInfo;
-
     IDandPasswords(){
-        loginInfo= new HashMap<Integer,String>();
+        loginInfo = new HashMap<Integer,String>();
     }
 
     public void add(int id, String password){
