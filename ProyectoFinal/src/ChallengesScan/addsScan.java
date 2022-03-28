@@ -32,6 +32,17 @@ public class addsScan {
 *   return challenge[i];
 * }
 * */
+    public String getAllChallenge(Challenge[] challenges){
+        String list_String = "";
+        for(int i =0; i < challenges.length; i++){
+            list_String += ((i + 1) + ". " + challenges[i].challengeName + "\n");
+        }
+        return  list_String;
+    }
+
+    public Challenge getChallenge(int num, Challenge[] challenges){
+        return challenges[num];
+    }
 
     public static void challengeControlAd(){
         int i = 0;

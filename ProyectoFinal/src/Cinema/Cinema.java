@@ -18,7 +18,35 @@ public class Cinema {
     private List<Schedule> schedules = new ArrayList<Schedule>();
     private Schedule schedule;
 
+    public String getAllMovies(Movie[] movies){
+        String list_String = "";
+        for(int i =0; i < movies.length; i++){
+            list_String += ((i + 1) + ". " + movies[i].getName() + "\n");
+        }
+        return  list_String;
+    }
 
+    public Movie getMovie(int num, Movie[] movies){
+        return movies[num];
+    }
+    public List getAllShowsByMovie(Movie movie, Schedule[] schedules){
+        ArrayList<Schedule> lista_schedules = new ArrayList();
+        for(int i = 0; i < schedules.length; i++){
+            if (schedules[i].getMovie().equals(movie)){
+                lista_schedules.add(schedules[i]);
+            }
+
+        }
+        return lista_schedules;
+    }
+
+    public String getAllShows(Schedule[] schedules){
+        String list_String = "";
+        for(int i =0; i < schedules.length; i++){
+            list_String += ((i + 1) + ". " + schedules[i].getMovie().getName() + schedules[i].toString() + "\n");
+        }
+        return  list_String;
+    }
 
 
     public Cinema(String name, String country, String city, String address, String phoneNumber){
