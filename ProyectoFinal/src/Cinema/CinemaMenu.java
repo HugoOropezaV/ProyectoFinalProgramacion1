@@ -1,5 +1,7 @@
 package Cinema;
 
+import Users.MyValues;
+
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.List;
@@ -162,6 +164,7 @@ public class CinemaMenu extends ProcessFinal{
                                 System.out.print("\ntype the Movie's Name:  ");
                                 movieName = scan.nextLine();
                                 System.out.print("\ntype the Movie's Category:  ");
+
                                 category = scan.nextLine();
                                 System.out.print("\ntype the Movie's Classification:  ");
                                 classification = scan.nextLine();

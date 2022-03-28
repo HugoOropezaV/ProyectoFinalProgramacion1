@@ -1,7 +1,6 @@
 package  Users;
 
 import ChallengesScan.Challenge;
-import ChallengesScan.Medal;
 import Cinema.Cinema;
 import Cinema.Movie;
 import Cinema.Schedule;
@@ -15,7 +14,6 @@ public class Customer extends Person{
     ArrayList<Schedule> bookings;
     public int completedChallenges;
     public int prizes;
-    ArrayList<Medal> medails ;
     public ArrayList<Movie> watchedMovies;
     int age;
     boolean isBlocked;
@@ -23,6 +21,9 @@ public class Customer extends Person{
     private ArrayList<Challenge> challengesCompleted;
     int totalMovies;
     public ArrayList<String> tickets;
+    public int[] numberOfComments = new int[100];
+    public int[] numberOfMovies = new int[100];
+    public int[] numberOfRanks = new int[100];
 
     public Customer(String name, String email, String phone, Account account, int age){
         super(name, email, phone, account);
@@ -34,7 +35,7 @@ public class Customer extends Person{
         this.age = age;
         isBlocked = false;
         this.totalMovies = 0;
-        medails = new ArrayList<Medal>();
+
         tickets = new ArrayList<String>();
     }
 
@@ -59,37 +60,60 @@ public class Customer extends Person{
     }
 
 
-    public void createComments(String comment, Movie movie){
+    public void createComments(String comment, Movie movie) {
         movie.addComment(getName(), comment);
+
+        for(int i = 0; i < addsScan.commentChallenge.length; i++){
+            if (addsScan.commentChallenge[i] != null){
+                numberOfComments[i]++;
+                addsScan.commentChallenge[i].Status = numberOfComments[i];
+            }
+
+        }
+
     }
 
     public void putRank(double rank, Movie movie){
         movie.addRank(rank);
+
+        for(int i = 0; i < addsScan.rankChallenge.length; i++){
+            if (addsScan.rankChallenge[i] != null){
+                numberOfRanks[i]++;
+                addsScan.rankChallenge[i].Status = numberOfRanks[i];
+            }
+
+        }
     }
 
-    public String showMedails() {
-        return medails.toString();
-    }
 
-    public void watchMovie(Movie movie){
+    public void watchMovie(Movie movie) {
         boolean aux = false;
-        for(int i = 0; i < bookings.size();i++){
-            if(bookings.get(i).getMovie().equals(movie)){
+        for (int i = 0; i < bookings.size(); i++) {
+            if (bookings.get(i).getMovie().equals(movie)) {
                 aux = true;
             }
         }
-        if(aux){
+        if (aux) {
             this.watchedMovies.add(movie);
         }
-    }
 
+        for(int i = 0; i < addsScan.watchChallenge.length; i++){
+            if (addsScan.watchChallenge[i] != null){
+                numberOfMovies[i]++;
+                if(addsScan.watchChallenge[i].moviesToWatchCheck == true) {
+                    for (int j = 0; j < addsScan.watchChallenge.length; j++) {
+                        if (movie.equals(addsScan.watchChallenge[j])) {
+                            numberOfMovies[i]++;
+                            addsScan.watchChallenge[i].Status = numberOfMovies[i];
+                        }
+                    }
+                }else
+                    {
+                    addsScan.watchChallenge[i].Status = numberOfMovies[i];
+                }
+            }
 
-    public void makeBooking(Schedule schedule){
-        bookings.add(schedule);
-    }
-
-    public void showTickets(){
-        tickets.toString();
+        }
     }
 
     public String getPerWatchMovies(){
@@ -114,6 +138,14 @@ public class Customer extends Person{
             }
             return res;
         }
+    }
+
+    public String showTickets(){
+        String res = "";
+        for(String str : tickets){
+            res += str + "\n";
+        }
+        return res;
     }
 
 }

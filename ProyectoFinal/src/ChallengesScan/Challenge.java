@@ -4,12 +4,13 @@ import javax.swing.*;
 import java.util.Scanner;
 
 public abstract class Challenge implements IChallengeManager{
+    public boolean moviesToWatchCheck = false;
     protected String challengeName;
     protected String challengeDescription;
     protected boolean deletedChallenge = true;
     protected String prize;
     protected boolean complited = false;
-    protected static int Status;
+    public int Status;
     protected int neededPoints;
 
     protected String medal;
@@ -149,7 +150,7 @@ public abstract class Challenge implements IChallengeManager{
         medalCreated = false;
     }
 
-    protected void statusPlusOne(boolean done) {
+    public void statusPlusOne(boolean done) {
         if (done){Status ++;}
     }
 }

@@ -504,7 +504,7 @@ public class Cinema {
             System.out.println("Ohh no, the schedule is full");
             return false;
         }else{
-            if(seats + schedule.getRoom().getActualCapacity() <= schedule.getRoom().getMaxCapacity()){
+            if(schedule.getRoom().getActualCapacity() - seats>= 0){
                 System.out.println("Your boking was succesful");
                 schedule.getRoom().updateCapacity(seats);
                 return true;

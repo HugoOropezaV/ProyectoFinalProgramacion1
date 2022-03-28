@@ -24,12 +24,13 @@ public class CommentChallenge extends Challenge{
 
     @Override
     protected void checkMyChallenge(){
+
         if (deletedChallenge) {
             System.out.println("This challenge doesn't exist or has been deleted");
 
         } else {
 
-            if (neededPoints == Status) {
+            if (neededPoints <= Status) {
                 complited = true;
 
             }

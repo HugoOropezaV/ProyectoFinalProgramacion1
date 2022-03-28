@@ -3,8 +3,7 @@ package ChallengesScan;
 import javax.swing.*;
 
 public class WatchMovieChallenge extends Challenge{
-    public static String[] moviesToWatch;
-    public boolean moviesToWatchCheck = false;
+    public String[] moviesToWatch;
 
 
     public WatchMovieChallenge(){

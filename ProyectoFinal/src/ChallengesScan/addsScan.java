@@ -1,6 +1,7 @@
 package ChallengesScan;
 
-import javax.swing.*;
+import Users.Customer;
+
 import java.util.Scanner;
 
 public class addsScan {
@@ -8,12 +9,13 @@ public class addsScan {
     private static int option;
     static Scanner scan = new Scanner(System.in);
 
-    static int commentChallengeN = 1;
-    static int watchChallengeN = 1;
-    static int rankChallengeN = 1;
-    static Challenge[] commentChallenge = new CommentChallenge[100];
-    static Challenge[] watchChallenge = new WatchMovieChallenge[100];
-    static Challenge[] rankChallenge = new RankChallenge[100];
+    public static int commentChallengeN = 1;
+    public static int watchChallengeN = 1;
+    public static int rankChallengeN = 1;
+    public static Challenge[] commentChallenge = new CommentChallenge[100];
+    public static Challenge[] watchChallenge = new WatchMovieChallenge[100];
+    public static Challenge[] rankChallenge = new RankChallenge[100];
+
 
     static int listNumber = 1;
 
@@ -465,7 +467,7 @@ public class addsScan {
         int aux = 0;
         boolean match = false;
 
-        while (aux <1){
+        while (aux < 1){
             System.out.println("Whats the challenges's name you wanna check?");
             String empty = scan.nextLine();
             String Moviename = scan.nextLine();
@@ -620,6 +622,8 @@ public class addsScan {
                                 count ++;
                             }
                         }
+
+
                         watchChallenge[count].checkMyChallenge();
 
                         int aux2 = 0;
@@ -640,7 +644,7 @@ public class addsScan {
                         }
                     } else if (positionChallenge[i] == 3){
                         for (int j = 0; j < i; j++){
-                            if (positionChallenge[j] == 2) {
+                            if (positionChallenge[j] == 3) {
                                 count ++;
                             }
                         }
