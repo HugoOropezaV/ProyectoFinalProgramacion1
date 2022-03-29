@@ -24,17 +24,16 @@ public class addsScan {
     static String[] challengeList = new String[300];
 
     static String[] trueChallenges = new String[300];
-    public static int challengeCounter = 0;
 
-/* public String getAllChallenge()
-*  like
-*   1. Challenge name
-*   2. Challenge nam2
-*
-* public Challenge getChallenge(int i){
-*   return challenge[i];
-* }
-* */
+    /* public String getAllChallenge()
+     *  like
+     *   1. Challenge name
+     *   2. Challenge nam2
+     *
+     * public Challenge getChallenge(int i){
+     *   return challenge[i];
+     * }
+     * */
     public static String getAllChallenge(Challenge[] challenges){
         String list_String = "";
         for(int i =0; i < challenges.length; i++){
@@ -60,13 +59,14 @@ public class addsScan {
                      3. Restore a Challenge
                      4. Rewrite a challenge
                      5. Check a challenge
-                     6. Check the Challenge list""");
+                     6. Check the Challenge list
+                     7. exit""");
 
                 option = scan.nextInt();
+                System.out.println("-----------------------------------");
 
                 if (option == 1) {
                     addsScan.addChallenges();
-                    challengeCounter++;
                 }else if(option == 2){
                     addsScan.lessChallenge();
                 }else if (option == 3){
@@ -76,13 +76,20 @@ public class addsScan {
                 }else if(option == 5){
                     addsScan.checkmChallenge();
                 } else if(option == 6){
+                    int count = 0;
                     for(int n = 0 ; n < challengeList.length; n++) {
+
                         if (trueChallenges[n] != null) {
-                            System.out.println(n+1 + ".- " + trueChallenges[n]);
+                            count++;
+                            System.out.println(count + ".- " + trueChallenges[n]);
                         }
                     }
+                    System.out.println("-----------------------------------");
+                }else if(option == 7){
+                    i = 2;
                 } else {
-                    System.out.println("Pls, select a valid option");
+                    System.out.println("Pls, select a valid option"+
+                            "\n -----------------------------------");
                 }
 
                 int aux2 = 0;
@@ -93,19 +100,24 @@ public class addsScan {
                             "\n 2. no");
 
                     option = scan.nextInt();
+                    System.out.println("-----------------------------------");
                     if (option == 1) {
                         i--;
                     }  else if (option != 1 && option != 2) {
-                        System.out.println("Pls, select a valid option");
+                        System.out.println("Pls, select a valid option" +
+                                "\n -----------------------------------");
                         aux2--;
                     }
                     aux2++;
                 }
             }catch (java.util.InputMismatchException e){
-                System.out.println("You've put a not allowed option, pls try again");
+            /*    System.out.println("You've put a not allowed option, pls try again" +
+                        "\n -----------------------------------");
+                System.out.println("Return to main cinema menu"); */
             }
             i++;
         }
+        System.out.println("-----------------------------------");
     }
 
     public static void challengeControlus(){
@@ -115,21 +127,29 @@ public class addsScan {
                 System.out.println("""
                     What do you wanna do?
                      1. Check my challenge progress
-                     2. Check the Challenge list""");
+                     2. Check the Challenge list
+                     3. Exit""");
 
 
                 option = scan.nextInt();
+                System.out.println("-----------------------------------");
 
                 if (option == 1) {
                     addsScan.checkmyChallenge();
                 } else if (option == 2) {
+                    int count = 0;
                     for (int n = 0; n < challengeList.length; n++) {
                         if (trueChallenges[n] != null) {
-                            System.out.println(n + 1 + ".- " + trueChallenges[n]);
+                            count++;
+                            System.out.println(count + ".- " + trueChallenges[n]);
                         }
                     }
-                } else {
-                    System.out.println("Pls, select a valid option");
+                    System.out.println("-----------------------------------");
+                } else if(option == 3){
+                    i = 2;
+                } else{
+                    System.out.println("Pls, select a valid option" +
+                            "\n -----------------------------------");
                 }
 
                 int aux2 = 0;
@@ -139,6 +159,7 @@ public class addsScan {
                             "\n 2. no");
 
                     option = scan.nextInt();
+                    System.out.println("-----------------------------------");
                     if (option == 1) {
                         i--;
                     } else if (option != 1 && option != 2) {
@@ -153,6 +174,7 @@ public class addsScan {
             }
             i++;
         }
+        System.out.println("-----------------------------------");
     }
 
     public static void addChallenges(){
@@ -168,15 +190,19 @@ public class addsScan {
 
             option = scan.nextInt();
 
+            System.out.println("-----------------------------------");
+
             if (option == 1) {
                 commentChallenge[commentChallengeN -1] = new CommentChallenge();
                 commentChallenge[commentChallengeN -1].createChallenge();
                 name = commentChallenge[commentChallengeN -1].challengeName;
 
                 try{
-                    for (int d= 0; d < trueChallenges.length; d++){
-                        if (trueChallenges[d].equals(name)){
-                            System.out.println("This challenge name actually exists in the challenge list");
+                    for (int d= 0; d < challengeList.length; d++){
+                        if (challengeList[d].equals(name)){
+                            System.out.println("This challenge name actually exists in the challenge lisTt." +
+                                    "\n If you can't see it it has probably been deleted" +
+                                    "\n -----------------------------------");
                             d = trueChallenges.length;
                             commentChallengeN--;
                             listNumber--;
@@ -188,6 +214,7 @@ public class addsScan {
 
                 commentChallengeN++;
                 listNumber++;
+                System.out.println("-----------------------------------");
 
             } else if (option == 2) {
                 watchChallenge[watchChallengeN -1] = new WatchMovieChallenge();
@@ -195,9 +222,11 @@ public class addsScan {
                 name = watchChallenge[watchChallengeN -1].challengeName;
 
                 try{
-                    for (int d= 0; d < trueChallenges.length; d++){
-                        if (trueChallenges[d].equals(name)){
-                            System.out.println("This challenge name actually exists in the challenge list");
+                    for (int d= 0; d < challengeList.length; d++){
+                        if (challengeList[d].equals(name)){
+                            System.out.println("This challenge name actually exists in the challenge list." +
+                                    "\n If you can't see it it has probably been deleted" +
+                                    "\n -----------------------------------");
                             d = trueChallenges.length;
                             watchChallengeN--;
                             listNumber--;
@@ -215,9 +244,11 @@ public class addsScan {
                 name = rankChallenge[rankChallengeN -1].challengeName;
 
                 try{
-                    for (int d= 0; d < trueChallenges.length; d++){
-                        if (trueChallenges[d].equals(name)){
-                            System.out.println("This challenge name actually exists in the challenge list");
+                    for (int d= 0; d < challengeList.length; d++){
+                        if (challengeList[d].equals(name)){
+                            System.out.println("This challenge name actually exists in the challenge list." +
+                                    "\n If you can't see it it has probably been deleted" +
+                                    "\n -----------------------------------");
                             d = trueChallenges.length;
                             rankChallengeN--;
                             listNumber--;
@@ -231,12 +262,14 @@ public class addsScan {
                 listNumber++;
 
             } else {
-                System.out.println("Pls, select a valid option");
+                System.out.println("Pls, select a valid option" +
+                        "\n -----------------------------------");
                 i--;
             }
 
             i++;
         }
+        System.out.println("-----------------------------------");
         challengeList[listNumber - 2] = name;
 
         for (int d= 0; d < trueChallenges.length; d++){
@@ -256,6 +289,8 @@ public class addsScan {
 
             option = scan.nextInt();
 
+            System.out.println("-----------------------------------");
+
             if (option == 1) {
                 if (positionChallenge[listNumber - 2] == 1) {
                     commentChallenge[commentChallengeN -2].createMedal();
@@ -264,12 +299,16 @@ public class addsScan {
                 } else if (positionChallenge[listNumber - 2] == 3) {
                     rankChallenge[rankChallengeN -2].createMedal();
                 }
+
+                System.out.println("-----------------------------------");
             } else if(option != 1 && option != 2){
-                System.out.println("Pls, select a valid option");
+                System.out.println("Pls, select a valid option" +
+                        "\n -----------------------------------");
                 j--;
             }
             j++;
         }
+
     }
 
     public static void lessChallenge(){
@@ -284,6 +323,8 @@ public class addsScan {
             System.out.println("Whats the challenges's name you wanna delete?");
 
             String Moviename = scan.nextLine();
+
+            System.out.println("-----------------------------------");
 
             for (int i = 0; i < challengeList.length; i++){
                 String challengeName = challengeList[i];
@@ -329,7 +370,7 @@ public class addsScan {
 
                     } else if (positionChallenge[i] == 3){
                         for (int j = 0; j < i; j++){
-                            if (positionChallenge[j] == 2) {
+                            if (positionChallenge[j] == 3) {
                                 count ++;
                             }
                         }
@@ -358,10 +399,13 @@ public class addsScan {
                             "\n 1. yes" +
                             "\n 2. no");
                     option = scan.nextInt();
+
+                    System.out.println("-----------------------------------");
                     if (option == 1) {
                         aux--;
                     } else if (option != 2) {
-                        System.out.println("Pls, select a valid option");
+                        System.out.println("Pls, select a valid option" +
+                                "\n -----------------------------------");
                         aux2--;
                     }
                     aux2++;
@@ -369,6 +413,7 @@ public class addsScan {
             }
             aux++;
         }
+        System.out.println("-----------------------------------");
     }
 
     public static void restoreChallenge(){
@@ -382,6 +427,8 @@ public class addsScan {
 
             String Moviename = scan.nextLine();
 
+            System.out.println("-----------------------------------");
+
             for (int i = 0; i < challengeList.length; i++){
                 String challengeName = challengeList[i];
                 if (Moviename.equals(challengeName)){
@@ -392,14 +439,19 @@ public class addsScan {
                             }
                         }
                         commentChallenge[count].restoreChallenge();
+                        String name = challengeName;
                         try{
                             for (int d= 0; d < trueChallenges.length; d++){
-                                if (trueChallenges[d].equals(null)){
-                                    trueChallenges[d]= challengeName;
+                                if (trueChallenges[d] == null){
+                                    trueChallenges[d]= name;
                                     d = trueChallenges.length;
                                 }
                             }
-                        } catch (java.lang.NullPointerException e){}
+                        } catch (java.lang.NullPointerException e){
+                            System.out.println("Something gone wrong" +
+                                    "\n-----------------------------------");
+
+                        }
 
 
 
@@ -412,28 +464,34 @@ public class addsScan {
                         watchChallenge[count].restoreChallenge();
                         try{
                             for (int d= 0; d < trueChallenges.length; d++){
-                                if (trueChallenges[d].equals(null)){
+                                if (trueChallenges[d] == null){
                                     trueChallenges[d]= challengeName;
                                     d = trueChallenges.length;
                                 }
                             }
-                        } catch (java.lang.NullPointerException e){}
+                        } catch (java.lang.NullPointerException e){
+                            System.out.println("Something gone wrong" +
+                                    "\n -----------------------------------");
+                        }
 
                     } else if (positionChallenge[i] == 3){
                         for (int j = 0; j < i; j++){
-                            if (positionChallenge[j] == 2) {
+                            if (positionChallenge[j] == 3) {
                                 count ++;
                             }
                         }
                         rankChallenge[count].restoreChallenge();
                         try{
                             for (int d= 0; d < trueChallenges.length; d++){
-                                if (trueChallenges[d].equals(null)){
+                                if (trueChallenges[d] == null){
                                     trueChallenges[d]= challengeName;
                                     d = trueChallenges.length;
                                 }
                             }
-                        } catch (java.lang.NullPointerException e){}
+                        } catch (java.lang.NullPointerException e){
+                            System.out.println("Something gone wrong" +
+                                    "\n -----------------------------------");
+                        }
 
                     }
 
@@ -449,10 +507,13 @@ public class addsScan {
                             "\n 1. yes" +
                             "\n 2. no");
                     option = scan.nextInt();
+
+                    System.out.println("-----------------------------------");
                     if (option == 1) {
                         aux--;
                     } else if (option != 2) {
-                        System.out.println("Pls, select a valid option");
+                        System.out.println("Pls, select a valid option" +
+                                "\n -----------------------------------");
                         aux2--;
                     }
                     aux2++;
@@ -460,6 +521,7 @@ public class addsScan {
             }
             aux++;
         }
+        System.out.println("-----------------------------------");
     }
 
     public static void checkmChallenge(){
@@ -468,9 +530,11 @@ public class addsScan {
         boolean match = false;
 
         while (aux < 1){
-            System.out.println("Whats the challenges's name you wanna check?");
+            System.out.println("Whats the challenge's name you wanna check?");
             String empty = scan.nextLine();
             String Moviename = scan.nextLine();
+
+            System.out.println("-----------------------------------");
 
             for (int i = 0; i < challengeList.length; i++){
                 String challengeName = challengeList[i];
@@ -482,6 +546,7 @@ public class addsScan {
                             }
                         }
                         commentChallenge[count].checkChallenge();
+                        System.out.println("-----------------------------------");
 
                         int aux2 = 0;
 
@@ -492,10 +557,13 @@ public class addsScan {
                                     "\n 2. no");
 
                             option = scan.nextInt();
+                            System.out.println("-----------------------------------");
                             if (option == 1) {
                                 commentChallenge[count].checkMedal();
+                                System.out.println("-----------------------------------");
                             } else if (option != 1 && option != 2) {
-                                System.out.println("Pls, select a valid option");
+                                System.out.println("Pls, select a valid option" +
+                                        "\n -----------------------------------");
                                 aux2--;
                             }
                             aux2++;
@@ -508,6 +576,7 @@ public class addsScan {
                             }
                         }
                         watchChallenge[count].checkChallenge();
+                        System.out.println("-----------------------------------");
 
                         int aux2 = 0;
 
@@ -519,21 +588,26 @@ public class addsScan {
 
                             option = scan.nextInt();
 
+                            System.out.println("-----------------------------------");
+
                             if (option == 1) {
-                                commentChallenge[count].checkMedal();
+                                watchChallenge[count].checkMedal();
+                                System.out.println("-----------------------------------");
                             } else if (option != 1 && option != 2) {
-                                System.out.println("Pls, select a valid option");
+                                System.out.println("Pls, select a valid option" +
+                                        "\n -----------------------------------");
                                 aux2--;
                             }
                             aux2++;
                         }
                     } else if (positionChallenge[i] == 3){
                         for (int j = 0; j < i; j++){
-                            if (positionChallenge[j] == 2) {
+                            if (positionChallenge[j] == 3) {
                                 count ++;
                             }
                         }
                         rankChallenge[count].checkChallenge();
+                        System.out.println("-----------------------------------");
                         int aux2 = 0;
                         while (aux2 < 1) {
 
@@ -542,10 +616,13 @@ public class addsScan {
                                     "\n 2. no");
 
                             option = scan.nextInt();
+                            System.out.println("-----------------------------------");
                             if (option == 1) {
-                                commentChallenge[count].checkMedal();
+                                rankChallenge[count].checkMedal();
+                                System.out.println("-----------------------------------");
                             } else if (option != 1 && option != 2) {
-                                System.out.println("Pls, select a valid option");
+                                System.out.println("Pls, select a valid option" +
+                                        "\n -----------------------------------");
                                 aux2--;
                             }
                             aux2++;
@@ -564,10 +641,12 @@ public class addsScan {
                             "\n 1. yes" +
                             "\n 2. no");
                     option = scan.nextInt();
+                    System.out.println("-----------------------------------");
                     if (option == 1) {
                         aux--;
                     } else if (option != 1 && option != 2) {
-                        System.out.println("Pls, select a valid option");
+                        System.out.println("Pls, select a valid option" +
+                                "\n -----------------------------------");
                         aux2--;
                     }
                     aux2++;
@@ -576,6 +655,7 @@ public class addsScan {
 
             aux++;
         }
+        System.out.println("-----------------------------------");
     }
 
     public static void checkmyChallenge(){
@@ -588,6 +668,7 @@ public class addsScan {
             System.out.println("What's the challenge's name you wanna check?");
 
             String Moviename = scan.nextLine();
+            System.out.println("-----------------------------------");
 
             for (int i = 0; i < challengeList.length; i++){
                 String challengeName = challengeList[i];
@@ -599,6 +680,7 @@ public class addsScan {
                             }
                         }
                         commentChallenge[count].checkMyChallenge();
+                        System.out.println("-----------------------------------");
                         int aux2 = 0;
                         while (aux2 < 1) {
 
@@ -607,10 +689,13 @@ public class addsScan {
                                     "\n 2. no");
 
                             option = scan.nextInt();
+                            System.out.println("-----------------------------------");
                             if (option == 1) {
                                 commentChallenge[count].checkMedal();
+                                System.out.println("-----------------------------------");
                             } else if (option != 1 && option != 2) {
-                                System.out.println("Pls, select a valid option");
+                                System.out.println("Pls, select a valid option" +
+                                        "\n -----------------------------------");
                                 aux2--;
                             }
                             aux2++;
@@ -625,6 +710,7 @@ public class addsScan {
 
 
                         watchChallenge[count].checkMyChallenge();
+                        System.out.println("-----------------------------------");
 
                         int aux2 = 0;
                         while (aux2 < 1) {
@@ -634,10 +720,13 @@ public class addsScan {
                                     "\n 2. no");
 
                             option = scan.nextInt();
+                            System.out.println("-----------------------------------");
                             if (option == 1) {
-                                commentChallenge[count].checkMedal();
+                                watchChallenge[count].checkMedal();
+                                System.out.println("-----------------------------------");
                             } else if (option != 1 && option != 2) {
-                                System.out.println("Pls, select a valid option");
+                                System.out.println("Pls, select a valid option" +
+                                        "\n -----------------------------------");
                                 aux2--;
                             }
                             aux2++;
@@ -649,6 +738,7 @@ public class addsScan {
                             }
                         }
                         rankChallenge[count].checkMyChallenge();
+                        System.out.println("-----------------------------------");
                         int aux2 = 0;
                         while (aux2 < 1) {
 
@@ -657,10 +747,13 @@ public class addsScan {
                                     "\n 2. no");
 
                             option = scan.nextInt();
+                            System.out.println("-----------------------------------");
                             if (option == 1) {
-                                commentChallenge[count].checkMedal();
+                                rankChallenge[count].checkMedal();
+                                System.out.println("-----------------------------------");
                             } else if (option != 1 && option != 2) {
-                                System.out.println("Pls, select a valid option");
+                                System.out.println("Pls, select a valid option" +
+                                        "\n -----------------------------------");
                                 aux2--;
                             }
                             aux2++;
@@ -679,10 +772,12 @@ public class addsScan {
                             "\n 1. yes" +
                             "\n 2. no");
                     option = scan.nextInt();
+                    System.out.println("-----------------------------------");
                     if (option == 1) {
                         aux--;
                     } else if (option != 1 && option != 2) {
-                        System.out.println("Pls, select a valid option");
+                        System.out.println("Pls, select a valid option" +
+                                "\n -----------------------------------");
                         aux2--;
                     }
                     aux2++;
@@ -702,12 +797,16 @@ public class addsScan {
             System.out.println("Whats the challenge's name you wanna rewrite?");
             String empty = scan.nextLine();
             String Moviename = scan.nextLine();
+            System.out.println("-----------------------------------");
+
+
 
             System.out.println("What do you wanna rewrite?" +
                     "\n 1. Challenge's name and descriptoin" +
                     "\n 2. Medal");
 
             option = scan.nextInt();
+            System.out.println("-----------------------------------");
 
 
             if (option == 1) {
@@ -726,11 +825,12 @@ public class addsScan {
                             }
                             commentChallenge[count].rewriteChallenge();
                             challengeList[i] = commentChallenge[count].challengeName;
+
                             try{
                                 for (int d= 0; d < trueChallenges.length; d++){
                                     String name = trueChallenges[d];
-                                    if (name.equals(null)){
-                                        trueChallenges[d]= challengeName;
+                                    if (name == challengeName){
+                                        trueChallenges[d]= commentChallenge[count].challengeName;
                                         d = trueChallenges.length;
                                     }
                                 }
@@ -748,8 +848,8 @@ public class addsScan {
                             try{
                                 for (int d= 0; d < trueChallenges.length; d++){
                                     String name = trueChallenges[d];
-                                    if (name.equals(null)){
-                                        trueChallenges[d]= challengeName;
+                                    if (name == challengeName){
+                                        trueChallenges[d]= watchChallenge[count].challengeName;
                                         d = trueChallenges.length;
                                     }
                                 }
@@ -757,7 +857,7 @@ public class addsScan {
 
                         } else if (positionChallenge[i] == 3) {
                             for (int j = 0; j < i; j++) {
-                                if (positionChallenge[j] == 2) {
+                                if (positionChallenge[j] == 3) {
                                     count++;
                                 }
                             }
@@ -766,8 +866,8 @@ public class addsScan {
                             try{
                                 for (int d= 0; d < trueChallenges.length; d++){
                                     String name = trueChallenges[d];
-                                    if (name.equals(null)){
-                                        trueChallenges[d]= challengeName;
+                                    if (name == challengeName){
+                                        trueChallenges[d]= rankChallenge[count].challengeName;
                                         d = trueChallenges.length;
                                     }
                                 }
@@ -787,98 +887,123 @@ public class addsScan {
                                 "\n 1. yes" +
                                 "\n 2. no");
                         option = scan.nextInt();
+                        System.out.println("-----------------------------------");
                         if (option == 1) {
                             aux--;
                         } else if (option != 1 && option != 2) {
-                            System.out.println("Pls, select a valid option");
+                            System.out.println("Pls, select a valid option" +
+                                    "\n -----------------------------------");
                             aux2--;
                         }
                         aux2++;
                     }
                 }
+
             }else if(option == 2){
                 for (int i = 0; i < challengeList.length; i++) {
                     String challengeName = challengeList[i];
+
+
                     if (Moviename.equals(challengeName)) {
 
+                        boolean notDeleted = false;
                         match = true;
 
-                        if (positionChallenge[i] == 1) {
-                            for (int j = 0; j < i; j++) {
-                                if (positionChallenge[j] == 1) {
-                                    count++;
-                                }
-                            }
-                            int aux2 = 0;
-                            while (aux2 < 1) {
-                                System.out.println("What action will you do?" +
-                                        "\n 1. Change medal information (or create one)" +
-                                        "\n 2. Delete medal");
-
-                                option = scan.nextInt();
-                                if (option == 1) {
-                                    commentChallenge[count].createMedal();
-                                } else if (option == 2) {
-                                    commentChallenge[count].deleteMedal();
-                                } else {
-                                    System.out.println("Pls, select a valid option");
-                                    aux2--;
-                                }
-                                aux2++;
-                            }
-
-                        } else if (positionChallenge[i] == 2) {
-                            for (int j = 0; j < i; j++) {
-                                if (positionChallenge[j] == 2) {
-                                    count++;
-                                }
-                            }
-
-                            int aux2 = 0;
-                            while (aux2 < 1) {
-                                System.out.println("What action will you do?" +
-                                        "\n 1. Change medal information (or create one)" +
-                                        "\n 2. Delete medal");
-
-                                option = scan.nextInt();
-                                if (option == 1) {
-                                    commentChallenge[count].createMedal();
-                                } else if (option == 2) {
-                                    commentChallenge[count].deleteMedal();
-                                } else {
-                                    System.out.println("Pls, select a valid option");
-                                    aux2--;
-                                }
-                                aux2++;
-                            }
-
-                        } else if (positionChallenge[i] == 3) {
-                            for (int j = 0; j < i; j++) {
-                                if (positionChallenge[j] == 2) {
-                                    count++;
-                                }
-                            }
-
-                            int aux2 = 0;
-                            while (aux2 < 1) {
-                                System.out.println("What action will you do?" +
-                                        "\n 1. Change medal information (or create one)" +
-                                        "\n 2. Delete medal");
-
-                                option = scan.nextInt();
-                                if (option == 1) {
-                                    commentChallenge[count].createMedal();
-                                } else if (option == 2) {
-                                    commentChallenge[count].deleteMedal();
-                                } else {
-                                    System.out.println("Pls, select a valid option");
-                                    aux2--;
-                                }
-                                aux2++;
+                        for (int m = 0; m < trueChallenges.length; m++) {
+                            if (trueChallenges[m] == challengeName) {
+                                notDeleted = true;
+                                m = trueChallenges.length;
                             }
                         }
 
-                        i = challengeList.length;
+                        if (notDeleted) {
+
+                            if (positionChallenge[i] == 1) {
+                                for (int j = 0; j < i; j++) {
+                                    if (positionChallenge[j] == 1) {
+                                        count++;
+                                    }
+                                }
+                                int aux2 = 0;
+                                while (aux2 < 1) {
+                                    System.out.println("What action will you do?" +
+                                            "\n 1. Change medal information (or create one)" +
+                                            "\n 2. Delete medal");
+
+                                    option = scan.nextInt();
+                                    System.out.println("-----------------------------------");
+                                    if (option == 1) {
+                                        commentChallenge[count].createMedal();
+                                    } else if (option == 2) {
+                                        commentChallenge[count].deleteMedal();
+                                    } else {
+                                        System.out.println("Pls, select a valid option" +
+                                                "\n -----------------------------------");
+                                        aux2--;
+                                    }
+                                    aux2++;
+                                }
+
+                            } else if (positionChallenge[i] == 2) {
+                                for (int j = 0; j < i; j++) {
+                                    if (positionChallenge[j] == 2) {
+                                        count++;
+                                    }
+                                }
+
+                                int aux2 = 0;
+                                while (aux2 < 1) {
+                                    System.out.println("What action will you do?" +
+                                            "\n 1. Change medal information (or create one)" +
+                                            "\n 2. Delete medal");
+
+                                    option = scan.nextInt();
+                                    System.out.println("-----------------------------------");
+                                    if (option == 1) {
+                                        watchChallenge[count].createMedal();
+                                    } else if (option == 2) {
+                                        watchChallenge[count].deleteMedal();
+                                    } else {
+                                        System.out.println("Pls, select a valid option" +
+                                                "\n -----------------------------------");
+                                        aux2--;
+                                    }
+                                    aux2++;
+                                }
+
+                            } else if (positionChallenge[i] == 3) {
+                                for (int j = 0; j < i; j++) {
+                                    if (positionChallenge[j] == 3) {
+                                        count++;
+                                    }
+                                }
+
+                                int aux2 = 0;
+                                while (aux2 < 1) {
+                                    System.out.println("What action will you do?" +
+                                            "\n 1. Change medal information (or create one)" +
+                                            "\n 2. Delete medal");
+
+                                    option = scan.nextInt();
+                                    System.out.println("-----------------------------------");
+                                    if (option == 1) {
+                                        rankChallenge[count].createMedal();
+                                    } else if (option == 2) {
+                                        rankChallenge[count].deleteMedal();
+                                    } else {
+                                        System.out.println("Pls, select a valid option" +
+                                                "\n -----------------------------------");
+                                        aux2--;
+                                    }
+                                    aux2++;
+                                }
+                            }
+
+                            i = challengeList.length;
+                        } else {
+                            System.out.println("This challenge has been deleted, pls restore it before you rewrite it" +
+                                    "\n -----------------------------------");
+                        }
                     }
 
                 }
@@ -891,20 +1016,24 @@ public class addsScan {
                                 "\n 2. no");
 
                         option = scan.nextInt();
+                        System.out.println("-----------------------------------");
                         if (option == 1) {
                             aux--;
                         } else if (option != 2) {
-                            System.out.println("Pls, select a valid option");
+                            System.out.println("Pls, select a valid option" +
+                                    "\n -----------------------------------");
                             aux2--;
                         }
                         aux2++;
                     }
                 }
             } else {
-                System.out.println("Pls, select a valid option");
+                System.out.println("Pls, select a valid option" +
+                        "\n -----------------------------------");
                 aux--;
             }
             aux++;
         }
+        System.out.println("-----------------------------------");
     }
 }

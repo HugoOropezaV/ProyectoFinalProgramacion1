@@ -39,6 +39,7 @@ public class WatchMovieChallenge extends Challenge{
                 j = 0;
             }
         }
+        String empty = scan.nextLine();
         System.out.println("Related prize");
         prize = scan.nextLine();
         deletedChallenge  = false;
